@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student - Student Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="logo">📚 EduManage</h2>
+            <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-link" data-page="dashboard">
+                <span class="icon">📊</span>
+                <span class="text">Dashboard</span>
+            </a>
+            <a href="students.html" class="nav-link" data-page="students">
+                <span class="icon">👥</span>
+                <span class="text">Students</span>
+            </a>
+            <a href="add-student.html" class="nav-link active" data-page="add">
+                <span class="icon">➕</span>
+                <span class="text">Add Student</span>
+            </a>
+            <a href="reports.html" class="nav-link" data-page="reports">
+                <span class="icon">📈</span>
+                <span class="text">Reports</span>
+            </a>
+            <a href="settings.html" class="nav-link" data-page="settings">
+                <span class="icon">⚙️</span>
+                <span class="text">Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Navigation Bar -->
+        <header class="top-nav">
+            <h1 class="page-title" id="formTitle">Add New Student</h1>
+            <div class="nav-right">
+                <span class="user-info">Administrator</span>
+                <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+            </div>
+        </header>
+
+        <!-- Form Content -->
+        <div class="container">
+            <div class="form-container">
+                <form id="studentForm" class="student-form">
+                    <!-- Photo Upload Section -->
+                    <div class="form-section">
+                        <h3>Photo</h3>
+                        <div class="photo-upload-area">
+                            <img id="photoPreview" src="https://via.placeholder.com/150" alt="Student Photo" class="photo-preview">
+                            <input type="file" id="photoInput" accept="image/*" class="hidden">
+                            <button type="button" class="btn btn-secondary" onclick="document.getElementById('photoInput').click()">Upload Photo</button>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3>Personal Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="studentId">Student ID / Roll Number *</label>
+                                <input type="text" id="studentId" required placeholder="e.g., STU001">
+                                <span class="error-message" id="studentIdError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" required placeholder="Enter full name">
+                                <span class="error-message" id="fullNameError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fatherName">Father's Name *</label>
+                                <input type="text" id="fatherName" required placeholder="Enter father's name">
+                                <span class="error-message" id="fatherNameError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="motherName">Mother's Name *</label>
+                                <input type="text" id="motherName" required placeholder="Enter mother's name">
+                                <span class="error-message" id="motherNameError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dob">Date of Birth *</label>
+                                <input type="date" id="dob" required>
+                                <span class="error-message" id="dobError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender">Gender *</label>
+                                <select id="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <span class="error-message" id="genderError"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="form-section">
+                        <h3>Contact Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="mobile">Mobile Number *</label>
+                                <input type="tel" id="mobile" required placeholder="10 digit mobile number">
+                                <span class="error-message" id="mobileError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" required placeholder="student@example.com">
+                                <span class="error-message" id="emailError"></span>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="address">Address *</label>
+                                <textarea id="address" required placeholder="Enter full address" rows="3"></textarea>
+                                <span class="error-message" id="addressError"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Information -->
+                    <div class="form-section">
+                        <h3>Academic Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="course">Course *</label>
+                                <select id="course" required>
+                                    <option value="">Select Course</option>
+                                    <option value="B.Tech">B.Tech</option>
+                                    <option value="B.Sc">B.Sc</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="M.Tech">M.Tech</option>
+                                </select>
+                                <span class="error-message" id="courseError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="branch">Branch/Department *</label>
+                                <select id="branch" required>
+                                    <option value="">Select Branch</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Information Technology">Information Technology</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Mechanical">Mechanical</option>
+                                    <option value="Civil">Civil</option>
+                                </select>
+                                <span class="error-message" id="branchError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="semester">Semester *</label>
+                                <select id="semester" required>
+                                    <option value="">Select Semester</option>
+                                    <option value="1">Semester 1</option>
+                                    <option value="2">Semester 2</option>
+                                    <option value="3">Semester 3</option>
+                                    <option value="4">Semester 4</option>
+                                    <option value="5">Semester 5</option>
+                                    <option value="6">Semester 6</option>
+                                    <option value="7">Semester 7</option>
+                                    <option value="8">Semester 8</option>
+                                </select>
+                                <span class="error-message" id="semesterError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="section">Section *</label>
+                                <select id="section" required>
+                                    <option value="">Select Section</option>
+                                    <option value="A">Section A</option>
+                                    <option value="B">Section B</option>
+                                    <option value="C">Section C</option>
+                                </select>
+                                <span class="error-message" id="sectionError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="admissionYear">Admission Year *</label>
+                                <input type="number" id="admissionYear" required placeholder="e.g., 2023" min="2000" max="2099">
+                                <span class="error-message" id="admissionYearError"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Information -->
+                    <div class="form-section">
+                        <h3>Performance Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="attendance">Attendance Percentage *</label>
+                                <input type="number" id="attendance" required placeholder="0-100" min="0" max="100">
+                                <span class="error-message" id="attendanceError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="marks">CGPA / Marks *</label>
+                                <input type="number" id="marks" required placeholder="0-10" min="0" max="10" step="0.01">
+                                <span class="error-message" id="marksError"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-secondary">Clear Form</button>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='students.html'">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Student</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript Files -->
+    <script src="js/app.js"></script>
+    <script>
+        // Handle Add/Edit Form
+        let editingStudentId = null;
+
+        // Load student data if editing
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            editingStudentId = urlParams.get('edit');
+
+            if (editingStudentId) {
+                loadStudentForEdit(editingStudentId);
+            }
+        });
+
+        // Load student data for editing
+        function loadStudentForEdit(studentId) {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const student = students.find(s => s.studentId === studentId);
+
+            if (student) {
+                document.getElementById('formTitle').textContent = 'Edit Student';
+                document.getElementById('studentId').value = student.studentId;
+                document.getElementById('studentId').readOnly = true;
+                document.getElementById('fullName').value = student.fullName;
+                document.getElementById('fatherName').value = student.fatherName;
+                document.getElementById('motherName').value = student.motherName;
+                document.getElementById('dob').value = student.dob;
+                document.getElementById('gender').value = student.gender;
+                document.getElementById('mobile').value = student.mobile;
+                document.getElementById('email').value = student.email;
+                document.getElementById('address').value = student.address;
+                document.getElementById('course').value = student.course;
+                document.getElementById('branch').value = student.branch;
+                document.getElementById('semester').value = student.semester;
+                document.getElementById('section').value = student.section;
+                document.getElementById('admissionYear').value = student.admissionYear;
+                document.getElementById('attendance').value = student.attendance;
+                document.getElementById('marks').value = student.marks;
+                
+                if (student.photo) {
+                    document.getElementById('photoPreview').src = student.photo;
+                }
+            }
+        }
+
+        // Handle photo upload
+        document.getElementById('photoInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    document.getElementById('photoPreview').src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('studentForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (!validateForm()) return;
+
+            const formData = {
+                studentId: document.getElementById('studentId').value,
+                fullName: document.getElementById('fullName').value,
+                fatherName: document.getElementById('fatherName').value,
+                motherName: document.getElementById('motherName').value,
+                dob: document.getElementById('dob').value,
+                gender: document.getElementById('gender').value,
+                mobile: document.getElementById('mobile').value,
+                email: document.getElementById('email').value,
+                address: document.getElementById('address').value,
+                course: document.getElementById('course').value,
+                branch: document.getElementById('branch').value,
+                semester: document.getElementById('semester').value,
+                section: document.getElementById('section').value,
+                admissionYear: document.getElementById('admissionYear').value,
+                attendance: parseFloat(document.getElementById('attendance').value),
+                marks: parseFloat(document.getElementById('marks').value),
+                photo: document.getElementById('photoPreview').src,
+                createdAt: editingStudentId ? getStudentCreatedDate(editingStudentId) : new Date().toISOString()
+            };
+
+            let students = JSON.parse(localStorage.getItem('students') || '[]');
+
+            if (editingStudentId) {
+                // Update existing student
+                const index = students.findIndex(s => s.studentId === editingStudentId);
+                if (index !== -1) {
+                    students[index] = formData;
+                }
+            } else {
+                // Add new student
+                students.push(formData);
+            }
+
+            localStorage.setItem('students', JSON.stringify(students));
+            alert(editingStudentId ? 'Student updated successfully!' : 'Student added successfully!');
+            window.location.href = 'students.html';
+        });
+
+        // Form validation
+        function validateForm() {
+            const fields = {
+                studentId: 'Student ID',
+                fullName: 'Full Name',
+                fatherName: 'Father Name',
+                motherName: 'Mother Name',
+                dob: 'Date of Birth',
+                gender: 'Gender',
+                mobile: 'Mobile Number',
+                email: 'Email',
+                address: 'Address',
+                course: 'Course',
+                branch: 'Branch',
+                semester: 'Semester',
+                section: 'Section',
+                admissionYear: 'Admission Year',
+                attendance: 'Attendance',
+                marks: 'Marks'
+            };
+
+            let isValid = true;
+
+            // Clear all error messages
+            Object.keys(fields).forEach(field => {
+                const errorElement = document.getElementById(field + 'Error');
+                if (errorElement) errorElement.textContent = '';
+            });
+
+            // Validate each field
+            Object.keys(fields).forEach(field => {
+                const value = document.getElementById(field).value.trim();
+                const errorElement = document.getElementById(field + 'Error');
+                if (!errorElement) return;
+
+                if (!value) {
+                    errorElement.textContent = `${fields[field]} is required`;
+                    isValid = false;
+                    return;
+                }
+
+                // Specific validations
+                if (field === 'mobile' && !/^\d{10}$/.test(value)) {
+                    errorElement.textContent = 'Mobile number must be 10 digits';
+                    isValid = false;
+                }
+
+                if (field === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    errorElement.textContent = 'Please enter a valid email';
+                    isValid = false;
+                }
+
+                if (field === 'attendance' && (value < 0 || value > 100)) {
+                    errorElement.textContent = 'Attendance must be between 0-100';
+                    isValid = false;
+                }
+
+                if (field === 'marks' && (value < 0 || value > 10)) {
+                    errorElement.textContent = 'CGPA must be between 0-10';
+                    isValid = false;
+                }
+            });
+
+            return isValid;
+        }
+
+        // Get created date of student
+        function getStudentCreatedDate(studentId) {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const student = students.find(s => s.studentId === studentId);
+            return student ? student.createdAt : new Date().toISOString();
+        }
+    </script>
+</body>
+</html>
